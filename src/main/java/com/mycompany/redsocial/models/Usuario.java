@@ -1,13 +1,14 @@
 package com.mycompany.redsocial.models;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
     @Column(name = "id_usuario", nullable = false)
     private Integer id;
 
@@ -39,6 +40,7 @@ public class Usuario {
     @Column(name = "description")
     private String description;
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -118,5 +120,4 @@ public class Usuario {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
