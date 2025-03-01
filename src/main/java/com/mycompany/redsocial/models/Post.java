@@ -1,13 +1,15 @@
 package com.mycompany.redsocial.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.time.Instant;
 
 @Entity
 @Table(name = "post")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Ignorar propiedades innecesarias
 public class Post {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
     @Column(name = "id_post", nullable = false)
     private Integer id;
 
@@ -32,6 +34,7 @@ public class Post {
     @Column(name = "state", length = 20)
     private String state;
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -87,5 +90,4 @@ public class Post {
     public void setState(String state) {
         this.state = state;
     }
-
 }
