@@ -1,13 +1,16 @@
 package com.mycompany.redsocial.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.Instant;
 
 @Entity
 @Table(name = "message")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
     @Column(name = "id_message", nullable = false)
     private Integer id;
 
