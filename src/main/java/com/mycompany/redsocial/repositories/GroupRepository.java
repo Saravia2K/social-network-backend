@@ -9,5 +9,5 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
 
     Optional<Group> findById(Integer integer);
 
-    // Puedes agregar métodos personalizados aquí si los necesitas
+
 }

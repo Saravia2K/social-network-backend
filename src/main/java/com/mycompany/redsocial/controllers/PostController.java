@@ -31,11 +31,25 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
+    // Obtener todos los posts
+    @GetMapping
+    public ResponseEntity<List<PostDTO>> getAllPosts() {
+        List<PostDTO> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
+    }
+
     // Obtener un post por su ID
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Integer id) {
-        Post post = postService.getPostById(id);
+    public ResponseEntity<PostDTO> getPostById(@PathVariable Integer id) {
+        PostDTO post = postService.getPostById(id);
         return ResponseEntity.ok(post);
+    }
+
+    // Actualizar un post
+    @PutMapping("/{id}")
+    public ResponseEntity<PostDTO> updatePost(@PathVariable Integer id, @RequestBody PostDTO postDTO) {
+        PostDTO updatedPost = postService.updatePost(id, postDTO);
+        return ResponseEntity.ok(updatedPost);
     }
 
     // Eliminar un post por su ID

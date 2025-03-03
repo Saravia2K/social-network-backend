@@ -22,7 +22,7 @@ public class SecurityConfig {
         http
                 .csrf().disable() // Deshabilitar CSRF para simplificar
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/usuarios/registro","/usuarios/login", "/usuarios/{id}","/posts", "/posts/without-group").permitAll() // Permitir acceso sin autenticación
+                        .requestMatchers("/usuarios/registro","/usuarios/login", "/usuarios/{id}","/posts", "/posts/without-group","/posts/{id}").permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated() // El resto de los endpoints requieren autenticación
                 );
 
