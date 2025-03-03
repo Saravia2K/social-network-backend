@@ -1,4 +1,9 @@
 package com.mycompany.redsocial.repositories;
 
-public class MessageRepository {
+import com.mycompany.redsocial.models.Message;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MessageRepository extends JpaRepository<Message, Integer> {
 }

@@ -21,6 +21,8 @@ public class UsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+
     // Registro de usuario
     public Usuario registrarUsuario(RegistroDTO registroDTO) {
         // Verificar si el username ya está en uso
@@ -102,5 +104,8 @@ public class UsuarioService {
         }
 
         return usuarioRepository.save(usuario);
+    }
+    public Optional<Usuario> getUsuarioById(Integer id) {
+        return usuarioRepository.findById(id);
     }
 }
