@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "`group`")
 public class Group {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_group", nullable = false)
     private Integer id;
 
@@ -15,6 +16,17 @@ public class Group {
     @Lob
     @Column(name = "description")
     private String description;
+
+    @Column(name = "id_usuario_creator") // Nuevo campo
+    private Integer idUsuarioCreator; // ID del usuario creador
+
+    public Integer getIdUsuarioCreator() {
+        return idUsuarioCreator;
+    }
+
+    public void setIdUsuarioCreator(Integer idUsuarioCreator) {
+        this.idUsuarioCreator = idUsuarioCreator;
+    }
 
     public Integer getId() {
         return id;
