@@ -1,4 +1,13 @@
 package com.mycompany.redsocial.repositories;
 
-public class GroupRepository {
+import com.mycompany.redsocial.models.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface GroupRepository extends JpaRepository<Group, Integer> {
+
+    Optional<Group> findById(Integer integer);
+
+    // Puedes agregar métodos personalizados aquí si los necesitas
 }
