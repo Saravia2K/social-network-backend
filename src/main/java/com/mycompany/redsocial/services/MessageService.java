@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class MessageService {
@@ -44,5 +47,19 @@ public class MessageService {
         } else {
             throw new RuntimeException("no hay mensajes con el id: " + id);
         }
+    }
+
+    // Obtener todos los mensajes de un usuario (enviados y recibidos)
+    public List<Message> getAllMessagesByUserId(Integer userId) {
+        // Obtener mensajes enviados
+        List<Message> sentMessages = messageRepository.findMessagesSentByUser(userId);
+
+        // Obtener mensajes recibidos
+        List<Message> receivedMessages = messageRepository.findMessagesReceivedByUser(userId);
+
+        // Combinar ambas listas y ordenar por ID
+        return Stream.concat(sentMessages.stream(), receivedMessages.stream())
+                .sorted(Comparator.comparing(Message::getId)) // Ordenar por ID
+                .collect(Collectors.toList());
     }
 }

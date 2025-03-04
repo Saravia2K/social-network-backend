@@ -74,6 +74,12 @@ public class MessageController {
         }
     }
 
+    // Endpoint para obtener todos los mensajes de un usuario (enviados y recibidos)
+    @GetMapping("/{userId}/my-messages")
+    public List<Message> getAllMessagesByUserId(@PathVariable Integer userId) {
+        return messageService.getAllMessagesByUserId(userId);
+    }
+
     private MessageDTO convertToDTO(Message message) {
         MessageDTO dto = new MessageDTO();
         dto.setIdUsuarioFrom(message.getIdUsuarioFrom().getId());
