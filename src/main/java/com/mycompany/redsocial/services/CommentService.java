@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,9 +53,11 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
-    // Obtener todos los comentarios
+    // Obtener todos los comentarios en orden inverso
     public List<Comment> getAllComments() {
-        return commentRepository.findAll();
+        List<Comment> comments = commentRepository.findAll();
+        Collections.reverse(comments); // Invierte el orden de la lista
+        return comments;
     }
 
     // Actualizar un comentario
@@ -83,8 +86,10 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
-    // Obtener comentarios por idPost
+    // Obtener comentarios por idPost en orden inverso
     public List<Comment> getCommentsByPostId(Integer idPost) {
-        return commentRepository.findByIdPost_Id(idPost); // Cambiado a findByIdPost_Id
+        List<Comment> comments = commentRepository.findByIdPost_Id(idPost);
+        Collections.reverse(comments); // Invierte el orden de la lista
+        return comments;
     }
 }

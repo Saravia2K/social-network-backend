@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,9 +59,14 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    // Método para obtener todos los posts
+
+    // Método para obtener todos los posts en orden inverso por id
     public List<PostDTO> getAllPosts() {
         List<Post> posts = postRepository.findAll();
+
+        // Invertir el orden de la lista basado en el id
+        Collections.reverse(posts);
+
         return posts.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
