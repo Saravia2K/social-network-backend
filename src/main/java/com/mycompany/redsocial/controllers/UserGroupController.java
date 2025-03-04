@@ -46,4 +46,12 @@ public class UserGroupController {
         userGroupService.deleteUserGroup(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    //Ver los integrantes por grupo
+    @GetMapping("/{idGroup}/my-groups")
+    public ResponseEntity<List<UserGroup>> getUserGroupsByGroupIdOrdered(@PathVariable Integer idGroup) {
+        List<UserGroup> userGroups = userGroupService.getUserGroupsByGroupIdOrdered(idGroup);
+        return ResponseEntity.ok(userGroups);
+    }
 }

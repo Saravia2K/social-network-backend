@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ModeratorService {
@@ -105,4 +106,11 @@ public class ModeratorService {
     public void deleteModerator(Integer id) {
         moderatorRepository.deleteById(id);
     }
+
+
+    //ver los moderadores por idGroup
+    public List<Moderator> getModeratorsByGroupId(Integer idGroup) {
+        return moderatorRepository.findModeratorsByGroupId(idGroup);
+    }
+
 }

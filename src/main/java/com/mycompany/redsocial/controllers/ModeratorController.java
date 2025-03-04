@@ -37,6 +37,7 @@ public class ModeratorController {
         return ResponseEntity.ok(moderators);
     }
 
+
     // Actualizar un moderador
     @PutMapping("/{id}")
     public ResponseEntity<ModeratorDTO> updateModerator(@PathVariable Integer id, @RequestBody ModeratorDTO moderatorDto) {
@@ -49,5 +50,12 @@ public class ModeratorController {
     public ResponseEntity<Void> deleteModerator(@PathVariable Integer id) {
         moderatorService.deleteModerator(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Ver los moderadores por grupo
+    @GetMapping("/{idGroup}/my-groups")
+    public ResponseEntity<List<Moderator>> getModeratorsByGroupId(@PathVariable Integer idGroup) {
+        List<Moderator> moderators = moderatorService.getModeratorsByGroupId(idGroup);
+        return ResponseEntity.ok(moderators);
     }
 }

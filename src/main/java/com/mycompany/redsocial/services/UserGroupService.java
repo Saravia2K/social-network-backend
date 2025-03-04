@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,5 +62,9 @@ public class UserGroupService {
     // Eliminar un UserGroup
     public void deleteUserGroup(Integer id) {
         userGroupRepository.deleteById(id);
+    }
+
+    public List<UserGroup> getUserGroupsByGroupIdOrdered(Integer idGroup) {
+        return userGroupRepository.findUserGroupsByGroupIdOrdered(idGroup);
     }
 }
