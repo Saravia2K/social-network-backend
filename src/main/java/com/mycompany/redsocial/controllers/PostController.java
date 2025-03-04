@@ -26,16 +26,14 @@ public class PostController {
 
     // Endpoint para obtener posts donde idGroup es null
     @GetMapping("/without-group")
-    public ResponseEntity<List<PostDTO>> getPostsWithoutGroup() {
-        List<PostDTO> posts = postService.getPostsWithoutGroup();
-        return ResponseEntity.ok(posts);
+    public List<Post> getPostsWithoutGroup() {
+        return postService.getPostsWithoutGroup();
     }
 
     // Obtener todos los posts
     @GetMapping
-    public ResponseEntity<List<PostDTO>> getAllPosts() {
-        List<PostDTO> posts = postService.getAllPosts();
-        return ResponseEntity.ok(posts);
+    public List<Post> getAllPosts() {
+        return postService.getAllPosts();
     }
 
     // Obtener un post por su ID
@@ -61,7 +59,7 @@ public class PostController {
 
     // Endpoint para obtener los posts de un grupo
     @GetMapping("/{idGroup}/group-posts")
-    public List<PostDTO> getPostsByIdGroup(@PathVariable Integer idGroup) {
+    public List<Post> getPostsByIdGroup(@PathVariable Integer idGroup) {
         return postService.getPostsByIdGroup(idGroup);
     }
 

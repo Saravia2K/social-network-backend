@@ -52,24 +52,17 @@ public class PostService {
     }
 
     // Método para obtener posts donde idGroup es null
-    public List<PostDTO> getPostsWithoutGroup() {
-        List<Post> posts = postRepository.findByIdGroupIsNull();
-        return posts.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public List<Post> getPostsWithoutGroup() {
+       List<Post> posts=postRepository.findByIdGroupIsNull();
+       Collections.reverse(posts);
+        return posts;
     }
 
-
     // Método para obtener todos los posts en orden inverso por id
-    public List<PostDTO> getAllPosts() {
+    public List<Post> getAllPosts() {
         List<Post> posts = postRepository.findAll();
-
-        // Invertir el orden de la lista basado en el id
-        Collections.reverse(posts);
-
-        return posts.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        Collections.reverse(posts); // Invertir el orden de la lista basado en el id
+        return posts;
     }
 
     // Método para obtener un post por su ID
@@ -127,10 +120,9 @@ public class PostService {
 
     //obtener posts por idGroup
 
-    public List<PostDTO> getPostsByIdGroup(Integer idGroup) {
-        List<Post> posts = postRepository.findPostsByIdGroup(idGroup);
-        return posts.stream()
-                .map(this::convertToDTO) // Convertir cada Post a PostDTO
-                .collect(Collectors.toList());
+    public List<Post> getPostsByIdGroup(Integer idGroup) {
+        List<Post> posts=postRepository.findPostsByIdGroup(idGroup);
+        Collections.reverse(posts);
+        return posts;
     }
 }
