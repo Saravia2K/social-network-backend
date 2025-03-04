@@ -58,4 +58,11 @@ public class PostController {
         postService.deletePost(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Endpoint para obtener los posts de un grupo
+    @GetMapping("/{idGroup}/group-posts")
+    public List<PostDTO> getPostsByIdGroup(@PathVariable Integer idGroup) {
+        return postService.getPostsByIdGroup(idGroup);
+    }
+
 }

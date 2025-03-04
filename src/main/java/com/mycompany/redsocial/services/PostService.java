@@ -112,7 +112,7 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
-    // Método auxiliar para convertir Post a PostDTO
+    //Método auxiliar para convertir Post a PostDTO
     private PostDTO convertToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
@@ -123,5 +123,14 @@ public class PostService {
         postDTO.setPostDate(post.getPostDate());
         postDTO.setState(post.getState());
         return postDTO;
+    }
+
+    //obtener posts por idGroup
+
+    public List<PostDTO> getPostsByIdGroup(Integer idGroup) {
+        List<Post> posts = postRepository.findPostsByIdGroup(idGroup);
+        return posts.stream()
+                .map(this::convertToDTO) // Convertir cada Post a PostDTO
+                .collect(Collectors.toList());
     }
 }

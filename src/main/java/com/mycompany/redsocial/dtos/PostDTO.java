@@ -12,4 +12,5 @@ public class PostDTO {
     private String content;
     private Instant postDate;
     private String state;
+
 }
