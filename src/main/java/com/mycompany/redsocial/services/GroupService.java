@@ -6,6 +6,7 @@ import com.mycompany.redsocial.models.Moderator;
 import com.mycompany.redsocial.models.Usuario;
 import com.mycompany.redsocial.repositories.GroupRepository;
 import com.mycompany.redsocial.repositories.ModeratorRepository;
+import com.mycompany.redsocial.repositories.UserGroupRepository;
 import com.mycompany.redsocial.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class GroupService {
 
     @Autowired
     private ModeratorRepository moderatorRepository;
+
+    @Autowired
+    private UserGroupRepository userGroupRepository;
 
     // Crear un grupo
     public GroupDTO createGroup(GroupDTO groupDto) {
@@ -76,5 +80,10 @@ public class GroupService {
     // Eliminar un grupo por ID
     public void deleteGroup(Integer id) {
         groupRepository.deleteById(id);
+    }
+
+    // Obtener todos los grupos a los que pertenece un usuario
+    public List<Group> getGroupsByUserId(Integer userId) {
+        return userGroupRepository.findGroupsByUserId(userId);
     }
 }

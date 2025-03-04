@@ -42,4 +42,10 @@ public class GroupController {
         groupService.deleteGroup(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Endpoint para obtener los grupos de un usuario
+    @GetMapping("/{userId}/my-groups")
+    public List<Group> getGroupsByUserId(@PathVariable Integer userId) {
+        return groupService.getGroupsByUserId(userId);
+    }
 }
