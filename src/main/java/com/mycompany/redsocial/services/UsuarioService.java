@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,7 +22,10 @@ public class UsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    // Obtener todos los usuarios
+    public List<Usuario> getAllUsuarios() {
+        return usuarioRepository.findAll();
+    }
 
     // Registro de usuario
     public Usuario registrarUsuario(RegistroDTO registroDTO) {
