@@ -32,8 +32,8 @@ public class ModeratorController {
 
     // Obtener todos los moderadores
     @GetMapping
-    public ResponseEntity<List<ModeratorDTO>> getAllModerators() {
-        List<ModeratorDTO> moderators = moderatorService.getAllModerators();
+    public ResponseEntity<List<Moderator>> getAllModerators() {
+        List<Moderator> moderators = moderatorService.getAllModerators();
         return ResponseEntity.ok(moderators);
     }
 

@@ -66,17 +66,8 @@ public class ModeratorService {
     }
 
     // Obtener todos los moderadores
-    public List<ModeratorDTO> getAllModerators() {
-        List<Moderator> moderators = moderatorRepository.findAll();
-        return moderators.stream()
-                .map(moderator -> {
-                    ModeratorDTO dto = new ModeratorDTO();
-                    dto.setId(moderator.getId());
-                    dto.setIdUsuario(moderator.getIdUsuario().getId()); // Obtener el ID del usuario
-                    dto.setIdGroup(moderator.getIdGroup().getId());    // Obtener el ID del grupo
-                    return dto;
-                })
-                .toList();
+    public List<Moderator> getAllModerators() {
+        return moderatorRepository.findAll();
     }
 
     // Actualizar un moderador
