@@ -38,8 +38,8 @@ public class PostController {
 
     // Obtener un post por su ID
     @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getPostById(@PathVariable Integer id) {
-        PostDTO post = postService.getPostById(id);
+    public ResponseEntity<Post> getPostById(@PathVariable Integer id) {
+        Post post = postService.getPostById(id); // Devuelve la entidad Post directamente
         return ResponseEntity.ok(post);
     }
 

@@ -1,5 +1,6 @@
 package com.mycompany.redsocial.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -14,10 +15,12 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
+    
     private com.mycompany.redsocial.models.Usuario idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_post", nullable = false)
+    @JsonIgnore
     private com.mycompany.redsocial.models.Post idPost;
 
     @Lob

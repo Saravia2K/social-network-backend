@@ -12,8 +12,22 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     Optional<Post> findById(Integer integer);
     List<Post> findByIdGroupIsNull();
-    @Query("SELECT p FROM Post p WHERE p.idGroup.id = :idGroup")
+
+    // Obtener posts por idGroup con comentarios
+    @Query("SELECT p FROM Post p LEFT JOIN FETCH p.comments WHERE p.idGroup.id = :idGroup")
     List<Post> findPostsByIdGroup(@Param("idGroup") Integer idGroup);
+
+    // Obtener todos los posts con comentarios
+    @Query("SELECT p FROM Post p LEFT JOIN FETCH p.comments")
+    List<Post> findAllWithComments();
+
+    // Obtener posts sin grupo con comentarios
+    @Query("SELECT p FROM Post p LEFT JOIN FETCH p.comments WHERE p.idGroup IS NULL")
+    List<Post> findPostsWithoutGroupWithComments();
+
+    // Obtener un post por ID con comentarios
+    @Query("SELECT p FROM Post p LEFT JOIN FETCH p.comments WHERE p.id = :id")
+    Optional<Post> findPostByIdWithComments(@Param("id") Integer id);
 
 
 }

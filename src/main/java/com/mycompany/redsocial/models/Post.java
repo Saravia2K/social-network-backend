@@ -3,6 +3,7 @@ package com.mycompany.redsocial.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -33,6 +34,10 @@ public class Post {
 
     @Column(name = "state", length = 20)
     private String state;
+
+    // Relación OneToMany con Comment
+    @OneToMany(mappedBy = "idPost", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     // Getters y Setters
     public Integer getId() {
@@ -89,5 +94,13 @@ public class Post {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

@@ -51,25 +51,24 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    // Método para obtener posts donde idGroup es null
+    // Método para obtener posts sin grupo con comentarios
     public List<Post> getPostsWithoutGroup() {
-       List<Post> posts=postRepository.findByIdGroupIsNull();
-       Collections.reverse(posts);
+        List<Post> posts = postRepository.findPostsWithoutGroupWithComments();
+        Collections.reverse(posts);
         return posts;
     }
 
-    // Método para obtener todos los posts en orden inverso por id
+    // Método para obtener todos los posts con comentarios
     public List<Post> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        Collections.reverse(posts); // Invertir el orden de la lista basado en el id
+        List<Post> posts = postRepository.findAllWithComments();
+        Collections.reverse(posts);
         return posts;
     }
 
-    // Método para obtener un post por su ID
-    public PostDTO getPostById(Integer id) {
-        Post post = postRepository.findById(id)
+    // Método para obtener un post por su ID con comentarios
+    public Post getPostById(Integer id) {
+        return postRepository.findPostByIdWithComments(id)
                 .orElseThrow(() -> new RuntimeException("Post no encontrado"));
-        return convertToDTO(post);
     }
 
     // Método para actualizar un post
@@ -118,10 +117,9 @@ public class PostService {
         return postDTO;
     }
 
-    //obtener posts por idGroup
-
+    // Método para obtener posts por idGroup con comentarios
     public List<Post> getPostsByIdGroup(Integer idGroup) {
-        List<Post> posts=postRepository.findPostsByIdGroup(idGroup);
+        List<Post> posts = postRepository.findPostsByIdGroup(idGroup);
         Collections.reverse(posts);
         return posts;
     }
